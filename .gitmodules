@@ -1,0 +1,6 @@
+[submodule "voting-app-client"]
+	path = voting-app-client
+	url = git@gitlab.com:Ziggoto/voting-app-client.git
+[submodule "src"]
+	path = src
+	url = git@gitlab.com:Ziggoto/voting-app-client.git
