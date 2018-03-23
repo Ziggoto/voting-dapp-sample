@@ -12,20 +12,20 @@
     </section>
     <section class="section">
       <div class="container">
-				<div class="columns">
-					<div class="column">
-            <div class="notification is-info">First column</div>
-					</div>
-					<div class="column">
-            <div class="notification is-success">Second column</div>
-					</div>
-					<div class="column">
-            <div class="notification is-warning">Third column</div>
-					</div>
-					<div class="column">
-            <div class="notification is-danger">Fourth column</div>
-					</div>
-				</div>
+        <div class="columns">
+          <div class="column" @click='vote("A")'>
+            <div class="notification is-info">Rick Sanchez</div>
+          </div>
+          <div class="column" @click='vote("B")'>
+            <div class="notification is-success">Bojack Horseman</div>
+          </div>
+          <div class="column" @click='vote("C")'>
+            <div class="notification is-warning">Mr Burns</div>
+          </div>
+          <div class="column" @click='vote("D")'>
+            <div class="notification is-danger">Peter Griffin</div>
+          </div>
+        </div>
       </div>
     </section>
   </div>
@@ -34,8 +34,18 @@
 <script>
 export default {
   name: 'hello',
+  mounted () {
+    console.log('I was mounted')
+  },
   data () {
-    return {}
+    return {
+    }
+  },
+  methods: {
+    vote (candidate) {
+      console.log('emit')
+      this.$emit('vote', candidate)
+    }
   }
 }
 </script>
