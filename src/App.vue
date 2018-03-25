@@ -48,10 +48,14 @@ export default {
             return instance.voteForCandidate(candidate, {from: account, gas: 6721975})
           })
           .then(() => {
-            console.log('Deu certo!')
+            this.$swal({type: 'success', title: 'Voto computado com sucesso!'})
           })
           .catch((err) => {
-            console.error('Error: ', err)
+            if (err.message.search('revert')) {
+              this.$swal({type: 'error', title: 'Oops', text: 'Um voto já foi computado para essa carteira'})
+            } else {
+              console.error('Error: ', err)
+            }
           })
       })
     }
