@@ -10,6 +10,7 @@ contract Voting {
   // Hashmap com o resultado das eleições
   mapping (bytes32 => uint8) private votesReceived;
 
+  // Construtor
   function Voting(bytes32[] candidateNames) public {
     candidates = candidateNames;
   }
