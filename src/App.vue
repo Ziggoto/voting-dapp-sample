@@ -6,7 +6,7 @@
 
 <script>
 import Web3 from 'web3'
-// import TruffleContract from 'truffle-contract'
+import TruffleContract from 'truffle-contract'
 
 export default {
   name: 'app',
@@ -21,8 +21,9 @@ export default {
 
     // Inicializa o contrato
     // TODO to add contract
-    // this.voteContract = TruffleContract({})
-    // this.voteContract.setProvider(this.provider)
+    this.voteContract = TruffleContract('../../build/contracts/Voting.json')
+    this.voteContract.setProvider(this.provider)
+    // this.voteContract.defaults({from: window.web3.eth.accounts[0],gas:6721975})
   },
   data () {
     return {
@@ -35,10 +36,24 @@ export default {
     register (candidate) {
       console.log(`I must register ${candidate} on blockchain`)
 
-      /*
-      this.voteContract.deployed().then((instance) => {
-        // TODO make the stuffs
-      }) */
+      this.web3.eth.getAccounts((error, accounts) => {
+        if (error) {
+          console.error('Error: ', error)
+        }
+
+        const account = accounts[0]
+
+        this.voteContract.deployed()
+          .then((instance) => {
+            return instance.voteForCandidate(parseInt(candidate), {from: account})
+          })
+          .then(() => {
+            console.log('Deu certo!')
+          })
+          .catch((err) => {
+            console.error('Error: ', err)
+          })
+      })
     }
   }
 }
