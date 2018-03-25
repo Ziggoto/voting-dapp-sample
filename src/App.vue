@@ -7,23 +7,23 @@
 <script>
 import Web3 from 'web3'
 import TruffleContract from 'truffle-contract'
+import ContractArtifact from '../../build/contracts/Voting.json'
 
 export default {
   name: 'app',
   mounted () {
     // Se conecta com a blockchain
+    Web3.providers.HttpProvider.prototype.sendAsync = Web3.providers.HttpProvider.prototype.send
     if (this.web3) {
       this.provider = this.web3.currentProvider
     } else {
-      this.provider = new Web3.providers.HttpProvider('http://localhost:8545')
+      this.provider = new Web3.providers.HttpProvider('http://localhost:7545')
     }
     this.web3 = new Web3(this.provider)
 
     // Inicializa o contrato
-    // TODO to add contract
-    this.voteContract = TruffleContract('../../build/contracts/Voting.json')
+    this.voteContract = TruffleContract(ContractArtifact)
     this.voteContract.setProvider(this.provider)
-    // this.voteContract.defaults({from: window.web3.eth.accounts[0],gas:6721975})
   },
   data () {
     return {
@@ -34,9 +34,9 @@ export default {
   },
   methods: {
     register (candidate) {
-      console.log(`I must register ${candidate} on blockchain`)
-
       this.web3.eth.getAccounts((error, accounts) => {
+        console.log(`Try to vote on ${candidate}`)
+
         if (error) {
           console.error('Error: ', error)
         }
@@ -45,7 +45,7 @@ export default {
 
         this.voteContract.deployed()
           .then((instance) => {
-            return instance.voteForCandidate(parseInt(candidate), {from: account})
+            return instance.voteForCandidate(candidate, {from: account, gas: 6721975})
           })
           .then(() => {
             console.log('Deu certo!')

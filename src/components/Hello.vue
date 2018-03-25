@@ -13,17 +13,8 @@
     <section class="section">
       <div class="container">
         <div class="columns">
-          <div class="column" @click='vote("A")'>
-            <div class="notification is-info">Rick Sanchez</div>
-          </div>
-          <div class="column" @click='vote("B")'>
-            <div class="notification is-success">Bojack Horseman</div>
-          </div>
-          <div class="column" @click='vote("C")'>
-            <div class="notification is-warning">Mr Burns</div>
-          </div>
-          <div class="column" @click='vote("D")'>
-            <div class="notification is-danger">Peter Griffin</div>
+          <div class="column" v-for="candidate in candidates" @click='vote(candidate.name)'>
+            <div :class="candidate.style">{{candidate.name}}</div>
           </div>
         </div>
       </div>
@@ -34,16 +25,34 @@
 <script>
 export default {
   name: 'hello',
-  mounted () {
-    console.log('I was mounted')
-  },
   data () {
     return {
+      candidates: [
+        {
+          name: 'Rick Sanchez',
+          style: 'notification is-info',
+          photo: null
+        },
+        {
+          name: 'Bojack Horseman',
+          style: 'notification is-success',
+          photo: null
+        },
+        {
+          name: 'Mr Burns',
+          style: 'notification is-warning',
+          photo: null
+        },
+        {
+          name: 'Peter Griffin',
+          style: 'notification is-danger',
+          photo: null
+        }
+      ]
     }
   },
   methods: {
     vote (candidate) {
-      console.log('emit')
       this.$emit('vote', candidate)
     }
   }
