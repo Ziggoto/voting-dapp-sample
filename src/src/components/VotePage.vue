@@ -14,7 +14,9 @@
       <div class="container">
         <div class="columns">
           <div class="column" v-for="candidate in candidates" @click='vote(candidate.name)'>
-            <div :class="candidate.style">{{candidate.name}}</div>
+            <div :class="candidate.style">
+              <img :src="candidate.photo" />
+            </div>
           </div>
         </div>
       </div>
@@ -23,6 +25,11 @@
 </template>
 
 <script>
+import RickSanchez from '@/assets/rick_sanchez.png'
+import BojackHorseman from '@/assets/bojack_horseman.png'
+import MrBurns from '@/assets/mr_burns.png'
+import PeterGriffin from '@/assets/peter_griffin.jpeg'
+
 export default {
   name: 'hello',
   data () {
@@ -31,22 +38,22 @@ export default {
         {
           name: 'Rick Sanchez',
           style: 'notification is-info',
-          photo: null
+          photo: RickSanchez
         },
         {
           name: 'Bojack Horseman',
           style: 'notification is-success',
-          photo: null
+          photo: BojackHorseman
         },
         {
           name: 'Mr Burns',
           style: 'notification is-warning',
-          photo: null
+          photo: MrBurns
         },
         {
           name: 'Peter Griffin',
           style: 'notification is-danger',
-          photo: null
+          photo: PeterGriffin
         }
       ]
     }
