@@ -4,7 +4,7 @@
 
 ## How does it works?
 
-TODO
+![demo](client.png)
 
 ## Installation
 

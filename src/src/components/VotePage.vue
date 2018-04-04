@@ -1,27 +1,26 @@
-<template>
-  <div>
-    <section class="hero is-dark">
-      <div class="hero-body">
-        <div class="container">
-          <h1 class="title">Eleições 2018</h1>
-          <h2 class="subtitle">
-            A simple container to divide your page into <strong>sections</strong>, like the one you're currently reading
-          </h2>
-        </div>
-      </div>
-    </section>
-    <section class="section">
-      <div class="container">
-        <div class="columns">
-          <div class="column" v-for="candidate in candidates" @click='vote(candidate.name)'>
-            <div :class="candidate.style">
-              <img :src="candidate.photo" />
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </div>
+<template lang="pug">
+  div
+    section.hero.is-dark
+      .hero-body
+        .container
+          h1.title Eleições 2018
+          h2.subtitle
+            | Escolha seu candidato seu&nbsp;
+            strong preferido
+            | .
+    section.section
+      .container
+        .columns
+          .column(v-for='(candidate, index) in candidates', @click='vote(candidate.name)')
+            .candidate-card
+              img(:src='candidate.photo')
+              .candadite-data
+                .candidate-name \#{{index+1}} {{candidate.name}}
+                div
+                  span(style='font-weight:bold') Occupation:&nbsp;
+                  span {{candidate.occupation}}
+              div(:class='candidate.style')
+                | Vote here
 </template>
 
 <script>
@@ -38,22 +37,26 @@ export default {
         {
           name: 'Rick Sanchez',
           style: 'notification is-info',
-          photo: RickSanchez
+          photo: RickSanchez,
+          occupation: 'Scientist'
         },
         {
           name: 'Bojack Horseman',
           style: 'notification is-success',
-          photo: BojackHorseman
+          photo: BojackHorseman,
+          occupation: 'Actor'
         },
         {
           name: 'Mr Burns',
           style: 'notification is-warning',
-          photo: MrBurns
+          photo: MrBurns,
+          occupation: 'Businessman'
         },
         {
           name: 'Peter Griffin',
           style: 'notification is-danger',
-          photo: PeterGriffin
+          photo: PeterGriffin,
+          occupation: 'Jobless'
         }
       ]
     }
@@ -67,5 +70,27 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style>
+<style lang="stylus">
+.candidate-card {
+  display: flex;
+  align-content: center;
+  flex-wrap: wrap;
+
+   .candadite-data {
+      justify-content: flex-start;
+      padding-left: 5px;
+
+      .candidate-name {
+        font-weight: bold;
+        font-size: 1.3em;
+      }
+   }
+
+   .notification {
+    text-align: center;
+    min-width: 225px;
+    margin-top: 5px;
+  }
+
+}
 </style>
