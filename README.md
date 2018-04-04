@@ -1,6 +1,6 @@
 # Voting Dapp Ethereum
 
-> A little timid implementation of a decentralized a pwa voting app powered by blockchain
+> A little timid implementation of a decentralized pwa voting app powered by blockchain
 
 ## How does it works?
 
@@ -11,14 +11,19 @@
 This project depends of:
 
 - Node
-- Yarn
 - [Truffle](https://github.com/trufflesuite/truffle)
 - [Ganache-cli](https://github.com/trufflesuite/ganache-cli)
 - [Metamask extension](https://metamask.io/) for Chrome/Firefox or [Brave Browser](https://brave.com/)
 
+To install all dependencies
+```
+$ [sudo] npm i -g truffle ganache-cli
+```
+
 ```bash
-$ git clone --recursive git@github.com:Ziggoto/voting-dapp-sample.git
+$ git clone git@github.com:Ziggoto/voting-dapp-sample.git
 $ cd voting-dapp-sample
+$ ganache-cli
 $ truffle test # Check if all contracts are working
 $ truffle deploy
 ```

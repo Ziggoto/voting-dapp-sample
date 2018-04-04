@@ -17,7 +17,7 @@ export default {
     if (this.web3) {
       this.provider = this.web3.currentProvider
     } else {
-      this.provider = new Web3.providers.HttpProvider('http://localhost:7545')
+      this.provider = new Web3.providers.HttpProvider('http://localhost:8545')
     }
     this.web3 = new Web3(this.provider)
 
