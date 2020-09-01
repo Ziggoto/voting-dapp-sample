@@ -14,7 +14,7 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
-    "buefy": "^0.6.3",
+    "buefy": "^0.7.2",
     "truffle-contract": "^3.0.4",
     "vue": "^2.5.2",
     "vue-router": "^3.0.1",
